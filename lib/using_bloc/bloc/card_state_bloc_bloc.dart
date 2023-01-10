@@ -1,8 +1,9 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:sample_applications/constant.dart';
-import 'package:sample_applications/models/card_model.dart';
 import 'package:sample_applications/models/cards_list.dart';
 
 part 'card_state_bloc_event.dart';

@@ -10,7 +10,7 @@ import 'package:sample_applications/using_riverpod/home_screen_riverpod.dart';
 
 void main() {
   String stateManagement =
-      const String.fromEnvironment('state', defaultValue: "2");
+      const String.fromEnvironment('STATE', defaultValue: "1");
   switch (stateManagement) {
     case "1":
       runApp(
@@ -42,3 +42,6 @@ void main() {
       ));
   }
 }
+/* run command using dart Environment
+  flutter build apk --dart-define=STATE=VALUE
+*/

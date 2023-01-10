@@ -110,6 +110,7 @@ CardModel createCard(int length) {
 }
 
 const kPrimaryColor = Color(0XFF4A5BDC);
+const kSecondaryColor = Color(0XFF674FAD);
 
 class CardStatesModel {
   final bool isLoading;

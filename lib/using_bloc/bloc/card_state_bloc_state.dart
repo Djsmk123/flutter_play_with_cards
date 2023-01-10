@@ -3,7 +3,11 @@ part of 'card_state_bloc_bloc.dart';
 @immutable
 abstract class CardStateBlocState {}
 
-class CardStateBlocInitial extends CardStateBlocState {}
+class CardStateBlocInitial extends CardStateBlocState {
+  final CardList cardList;
+
+  CardStateBlocInitial(this.cardList);
+}
 
 class CardStateBlocLoading extends CardStateBlocState {
   final bool isLoading;

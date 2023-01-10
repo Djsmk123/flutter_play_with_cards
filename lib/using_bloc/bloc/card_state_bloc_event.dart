@@ -4,9 +4,7 @@ part of 'card_state_bloc_bloc.dart';
 abstract class CardStateBlocEvent {}
 
 class CardStateBlocInitialEvent extends CardStateBlocEvent {
-  final CardList cardList;
 
-  CardStateBlocInitialEvent(this.cardList);
 }
 
 class CardStateBlocEventAddNewCard extends CardStateBlocEvent {}

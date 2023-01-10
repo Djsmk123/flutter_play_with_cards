@@ -23,12 +23,24 @@ class CommonHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Card Tutorial using $stateManement"),
+          elevation: 5,
+          flexibleSpace: FlexibleSpaceBar(
+            background: Container(
+              decoration: const BoxDecoration(
+                  gradient:
+                      LinearGradient(colors: [kPrimaryColor, kSecondaryColor])),
+            ),
+          ),
+          title: Text(
+            "Card Tutorial using $stateManement",
+            style: const TextStyle(color: Colors.white, fontSize: 20),
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             addCard();
           },
+          backgroundColor: kSecondaryColor,
           child: const Icon(Icons.add),
         ),
         body: Center(
@@ -50,7 +62,7 @@ class CommonHomeScreen extends StatelessWidget {
                 ])
               : const Center(
                   child: CircularProgressIndicator(
-                    color: kPrimaryColor,
+                    color: kSecondaryColor,
                   ),
                 ),
         )));

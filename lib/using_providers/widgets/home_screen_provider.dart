@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_applications/common_home_screen.dart';
+import 'package:sample_applications/widgets/common_home_screen.dart';
 import 'package:sample_applications/constant.dart';
 
 import 'package:sample_applications/using_providers/providers/cards_states_provider.dart';
