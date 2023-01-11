@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sample_applications/widgets/common_home_screen.dart';
 import 'package:sample_applications/constant.dart';
 import 'package:sample_applications/using_riverpod/core_riverpod.dart';
-import 'package:sample_applications/using_riverpod/widgets/custom_widget_pod.dart';
+import 'package:sample_applications/using_riverpod/widgets/custom_card_riverpod.dart';
 
 class HomeScreenRiverPod extends ConsumerWidget {
   const HomeScreenRiverPod({super.key});
@@ -25,7 +25,7 @@ class HomeScreenRiverPod extends ConsumerWidget {
         ref.read(cardListProvider.notifier).removeCard(index);
       },
       cardsList: cardList,
-      child: (index) => CustomWidgetRiverPod(index),
+      child: (index) => CustomCardRiverPod(index),
       isLoading: isLoading,
     );
   }

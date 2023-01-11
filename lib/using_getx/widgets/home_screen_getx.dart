@@ -4,7 +4,7 @@ import 'package:sample_applications/constant.dart';
 import 'package:sample_applications/using_getx/controller/card_getx_controller.dart';
 import 'package:sample_applications/using_getx/widgets/custom_card_getx.dart';
 
-import '../widgets/common_home_screen.dart';
+import '../../widgets/common_home_screen.dart';
 
 class HomeScreenGetx extends StatelessWidget {
   const HomeScreenGetx({super.key});

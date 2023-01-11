@@ -102,7 +102,7 @@ List<Map<String, dynamic>> cards = [
 
 CardModel createCard(int length) {
   return CardModel(
-      "Card $length",
+      "Card ${length + 1}",
       "This is the new card",
       "https://wallpapers.com/images/featured-full/cool-profile-pictures-4co57dtwk64fb7lv.jpg",
       0,

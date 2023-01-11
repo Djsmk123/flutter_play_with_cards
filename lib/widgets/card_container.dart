@@ -17,8 +17,14 @@ class CardContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isLiked = card.isLiked;
+    var size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: size.width > 600
+          ? const EdgeInsets.symmetric(horizontal: 100, vertical: 20)
+          : const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 20,
+            ),
       child: Card(
         elevation: 10,
         surfaceTintColor: kSecondaryColor,

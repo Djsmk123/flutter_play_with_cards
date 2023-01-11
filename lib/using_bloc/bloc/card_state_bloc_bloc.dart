@@ -1,33 +1,59 @@
-// ignore_for_file: depend_on_referenced_packages
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
+
 import 'package:sample_applications/constant.dart';
+import 'package:sample_applications/models/card_model.dart';
 import 'package:sample_applications/models/cards_list.dart';
 
 part 'card_state_bloc_event.dart';
 part 'card_state_bloc_state.dart';
 
-class CardStateBlocBloc extends Bloc<CardStateBlocEvent, CardStateBlocState> {
+class CardStateBlocBloc extends Bloc<CardStateBlocEvents, CardStateBlocState> {
   CardStateBlocBloc()
-      : super(CardStateBlocInitial(
-          CardList.fromJson({
-            "cards": cards,
-          }),
-        )) {
-    on<CardStateBlocEvent>((event, emit) async {
+      : super(CardStateBloc(CardList.fromJson({"cards": cards}),
+            const CardStatesModel(false, null), false)) {
+    on<CardStateBlocEvents>((event, emit) async {
       if (event is CardStateBlocEventAddNewCard) {
-        emit(CardStateBlocLoading(true));
-        await Future.delayed(const Duration(seconds: 1));
-      } else if (event is CardStateBlocEventSetCardLoading) {
-        emit(CardStateBlocLoading(true));
-      } else if (event is CardStateBlocEventToggleLike) {
-        emit(CardStateBlocLoading(true));
-      } else if (event is CardStateBlocEventRemoveCard) {
-        emit(CardStateBlocLoading(true));
-      } else if (event is CardStateBlocEventSetHomeScreenLoading) {
-        emit(CardStateBlocLoading(true));
+        emit(state.copyWith(isLoading: true));
+        await Future.delayed(const Duration(seconds: 2));
+        var cards = state.cardsList.copyWith(
+          [
+            ...state.cardsList.cards,
+            event.cardModel,
+          ],
+        );
+        emit(state.copyWith(cardsList: cards, isLoading: false));
+      } else if (event is CardStateBlocEventDeleteCard) {
+        emit(state.copyWith(isLoading: true));
+        await Future.delayed(const Duration(seconds: 2));
+        var cards = state.cardsList.cards;
+        cards.removeAt(event.index);
+        emit(state.copyWith(
+          cardsList: state.cardsList.copyWith(cards),
+          isLoading: false,
+        ));
+      } else if (event is CardStateBlocEventToogle) {
+        emit(state.copyWith(
+            cardStatesModel: CardStatesModel(true, event.index)));
+
+        await Future.delayed(const Duration(seconds: 2));
+        emit(state.copyWith(
+            cardStatesModel: const CardStatesModel(false, null)));
+        var card = state.cardsList.cards[event.index];
+
+        if (card.isLiked) {
+          card = card.copyWith(likes: card.likes - 1, isLiked: false);
+        } else {
+          card = card.copyWith(likes: card.likes + 1, isLiked: true);
+        }
+        var cards = state.cardsList.cards;
+        cards[event.index] = card;
+        emit(state.copyWith(
+          cardsList: state.cardsList.copyWith(cards),
+          isLoading: false,
+        ));
       }
     });
   }

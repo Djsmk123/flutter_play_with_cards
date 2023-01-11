@@ -1,18 +1,24 @@
 part of 'card_state_bloc_bloc.dart';
 
-@immutable
-abstract class CardStateBlocEvent {}
-
-class CardStateBlocInitialEvent extends CardStateBlocEvent {
-
+abstract class CardStateBlocEvents {
+  const CardStateBlocEvents();
 }
 
-class CardStateBlocEventAddNewCard extends CardStateBlocEvent {}
+class CardStateBlocEventToogle extends CardStateBlocEvents {
+  final int index;
+  CardStateBlocEventToogle(this.index);
+}
 
-class CardStateBlocEventSetCardLoading extends CardStateBlocEvent {}
+class CardStateBlocEventAddNewCard extends CardStateBlocEvents {
+  final CardModel cardModel;
 
-class CardStateBlocEventToggleLike extends CardStateBlocEvent {}
+  CardStateBlocEventAddNewCard(this.cardModel);
+}
 
-class CardStateBlocEventRemoveCard extends CardStateBlocEvent {}
+class CardStateBlocEventDeleteCard extends CardStateBlocEvents {
+  final int index;
 
-class CardStateBlocEventSetHomeScreenLoading extends CardStateBlocEvent {}
+  CardStateBlocEventDeleteCard(this.index);
+}
+
+class CardStateBlocEventHomeScreenLoading extends CardStateBlocEvents {}

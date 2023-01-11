@@ -1,28 +1,24 @@
 part of 'card_state_bloc_bloc.dart';
 
 @immutable
-abstract class CardStateBlocState {}
-
-class CardStateBlocInitial extends CardStateBlocState {
-  final CardList cardList;
-
-  CardStateBlocInitial(this.cardList);
-}
-
-class CardStateBlocLoading extends CardStateBlocState {
+abstract class CardStateBlocState {
+  final CardList cardsList;
+  final CardStatesModel cardStatesModel;
   final bool isLoading;
+  const CardStateBlocState(
+      this.cardsList, this.cardStatesModel, this.isLoading);
 
-  CardStateBlocLoading(this.isLoading);
+  CardStateBloc copyWith(
+      {CardList? cardsList,
+      CardStatesModel? cardStatesModel,
+      bool? isLoading}) {
+    return CardStateBloc(cardsList ?? this.cardsList,
+        cardStatesModel ?? this.cardStatesModel, isLoading ?? this.isLoading);
+  }
 }
 
-class CardStateBlocLoaded extends CardStateBlocState {
-  final CardStatesModel cardStates;
-
-  CardStateBlocLoaded(this.cardStates);
-}
-
-class CardStateBlocCardLst extends CardStateBlocState {
-  final CardList cardList;
-
-  CardStateBlocCardLst(this.cardList);
+class CardStateBloc extends CardStateBlocState {
+  const CardStateBloc(
+      CardList cardsList, CardStatesModel cardStatesModel, bool isLoading)
+      : super(cardsList, cardStatesModel, isLoading);
 }

@@ -4,9 +4,9 @@ import 'package:sample_applications/widgets/card_container.dart';
 
 import '../providers/cards_states_provider.dart';
 
-class CustomCards extends StatelessWidget {
+class CustomCardProvider extends StatelessWidget {
   final int index;
-  const CustomCards({
+  const CustomCardProvider({
     Key? key,
     required this.index,
   }) : super(key: key);
