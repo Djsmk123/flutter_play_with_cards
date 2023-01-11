@@ -11,17 +11,17 @@ class BlocHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CardStateBlocBloc, CardStateBlocState>(
+    return BlocBuilder<CardStateProviderBloc, CardStateBlocState>(
       builder: ((context, state) {
         return CommonHomeScreen(
             cardsList: state.cardsList,
             addCard: () {
-              BlocProvider.of<CardStateBlocBloc>(context).add(
+              BlocProvider.of<CardStateProviderBloc>(context).add(
                   CardStateBlocEventAddNewCard(
                       createCard(state.cardsList.cards.length)));
             },
             removeCard: (index) {
-              BlocProvider.of<CardStateBlocBloc>(context)
+              BlocProvider.of<CardStateProviderBloc>(context)
                   .add(CardStateBlocEventDeleteCard(index));
             },
             isLoading: state.isLoading,

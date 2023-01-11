@@ -113,7 +113,8 @@ class SelectionHomeScreen extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) => MultiBlocProvider(providers: [
-                      BlocProvider(create: (context) => CardStateBlocBloc()),
+                      BlocProvider(
+                          create: (context) => CardStateProviderBloc()),
                     ], child: const MyApp(home: BlocHomeScreen()))));
     }
   }

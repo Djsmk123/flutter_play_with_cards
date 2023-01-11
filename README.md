@@ -72,27 +72,25 @@ We can use `InheritedWidget` to solve this problem. We will create a `CardState`
 
 # using Bloc 
 
-- work in progress
+- For this, we will be using `MultiBlocProvider` in place of `ProviderScope`.
+
+- `CardStateProviderBloc` will be extend as `Bloc<CardStateBlocEvents, CardStateBlocState>` where `CardStateBlocEvents` and `CardStateBlocState` are events and states for the following provider.
+
+- Types of Events:
+    - `CardStateBlocEventsToggleLike`: will be used to toggle like on card.
+    - `CardStateBlocEventAddNewCard`: will be used to add new card.
+    - `CardStateBlocEventDeleteCard`: will be used to remove existing card.
+
+- Types of States:
+    -  `CardStateBloc `will  extends `CardStateBlocState` and will be used to update the state of the card using `copyWith` method.
 
 
 # Switching between different State-Management
 
-- we will be using ```String stateManagement =
-      const String.fromEnvironment('state', defaultValue: "1");```
-      
-- Commmand for build:
+- `state_management_selection_screen.dart` will be used to switch between different State-Management.
 
-  ` flutter build apk --dart-define=STATE=VALUE ` 
-    
-    where STATE:
+![output2](./output2.png)
 
-         "1": default value and for proivder,
-
-         "2": Riverpod,
-  
-         "3": GetX,
-        
-         "4": Bloc
 
 # Build Runner
 

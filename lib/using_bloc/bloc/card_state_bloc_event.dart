@@ -4,9 +4,9 @@ abstract class CardStateBlocEvents {
   const CardStateBlocEvents();
 }
 
-class CardStateBlocEventToogle extends CardStateBlocEvents {
+class CardStateBlocEventToggleLike extends CardStateBlocEvents {
   final int index;
-  CardStateBlocEventToogle(this.index);
+  CardStateBlocEventToggleLike(this.index);
 }
 
 class CardStateBlocEventAddNewCard extends CardStateBlocEvents {
@@ -20,5 +20,3 @@ class CardStateBlocEventDeleteCard extends CardStateBlocEvents {
 
   CardStateBlocEventDeleteCard(this.index);
 }
-
-class CardStateBlocEventHomeScreenLoading extends CardStateBlocEvents {}

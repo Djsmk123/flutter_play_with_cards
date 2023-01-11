@@ -9,7 +9,7 @@ class CustomCardWidgetBloc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CardStateBlocBloc, CardStateBlocState>(
+    return BlocBuilder<CardStateProviderBloc, CardStateBlocState>(
         builder: (context, state) {
       final card = state.cardsList.cards[index];
       final bool isLoading = state.cardStatesModel.index != null &&
@@ -17,8 +17,8 @@ class CustomCardWidgetBloc extends StatelessWidget {
           state.cardStatesModel.isLoading;
       return InkWell(
         onTap: () {
-          BlocProvider.of<CardStateBlocBloc>(context)
-              .add(CardStateBlocEventToogle(index));
+          BlocProvider.of<CardStateProviderBloc>(context)
+              .add(CardStateBlocEventToggleLike(index));
         },
         child: CardContainer(
           card: card,

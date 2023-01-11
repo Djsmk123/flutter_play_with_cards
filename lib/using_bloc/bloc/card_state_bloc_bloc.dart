@@ -10,8 +10,9 @@ import 'package:sample_applications/models/cards_list.dart';
 part 'card_state_bloc_event.dart';
 part 'card_state_bloc_state.dart';
 
-class CardStateBlocBloc extends Bloc<CardStateBlocEvents, CardStateBlocState> {
-  CardStateBlocBloc()
+class CardStateProviderBloc
+    extends Bloc<CardStateBlocEvents, CardStateBlocState> {
+  CardStateProviderBloc()
       : super(CardStateBloc(CardList.fromJson({"cards": cards}),
             const CardStatesModel(false, null), false)) {
     on<CardStateBlocEvents>((event, emit) async {
@@ -34,7 +35,7 @@ class CardStateBlocBloc extends Bloc<CardStateBlocEvents, CardStateBlocState> {
           cardsList: state.cardsList.copyWith(cards),
           isLoading: false,
         ));
-      } else if (event is CardStateBlocEventToogle) {
+      } else if (event is CardStateBlocEventToggleLike) {
         emit(state.copyWith(
             cardStatesModel: CardStatesModel(true, event.index)));
 
