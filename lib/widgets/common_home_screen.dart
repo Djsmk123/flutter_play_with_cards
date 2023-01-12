@@ -49,6 +49,7 @@ class CommonHomeScreen extends StatelessWidget {
               ? Column(children: [
                   ListView.builder(
                     shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: ((context, index) {
                       return Dismissible(
                           onDismissed: (direction) {
