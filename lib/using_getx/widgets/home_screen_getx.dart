@@ -16,8 +16,8 @@ class HomeScreenGetx extends StatelessWidget {
       final cardlst = controller.list.value;
       final isLoading = controller.isLoading.value;
       return CommonHomeScreen(
-        addCard: () async {
-          controller.addCard(createCard(cardlst.cards.length));
+        addCard: (title, desc) async {
+          controller.addCard(createCard(title, desc));
         },
         cardsList: cardlst,
         child: (index) {

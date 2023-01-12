@@ -16,10 +16,8 @@ class HomeScreenRiverPod extends ConsumerWidget {
 
     return CommonHomeScreen(
       stateManement: "RiverPod",
-      addCard: () {
-        ref
-            .read(cardListProvider.notifier)
-            .addNewCard(createCard(cardList.cards.length));
+      addCard: (title, desc) {
+        ref.read(cardListProvider.notifier).addNewCard(createCard(title, desc));
       },
       removeCard: (index) {
         ref.read(cardListProvider.notifier).removeCard(index);

@@ -4,7 +4,7 @@ import 'package:sample_applications/models/card_model.dart';
 import 'package:sample_applications/models/cards_list.dart';
 
 class CardControllerGetx extends GetxController {
-  late final Rx<CardList> list = CardList.fromJson({"cards": cards}).obs;
+  late final Rx<CardList> list = CardList.fromJson({"cards": cardsList()}).obs;
   Rx<bool> isLoading = false.obs;
   Rx<CardStatesModel> cardStates = const CardStatesModel(false, null).obs;
 

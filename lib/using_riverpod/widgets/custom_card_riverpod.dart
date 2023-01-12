@@ -14,15 +14,13 @@ class CustomCardRiverPod extends ConsumerWidget {
     final bool isLoading = cardStates.cardStates.index == index
         ? cardStates.cardStates.isLoading
         : false;
-    return InkWell(
+    return CardContainer(
+      card: card,
+      index: index,
       onTap: () {
         ref.read(cardListProvider.notifier).toggleLike(index);
       },
-      child: CardContainer(
-        card: card,
-        index: index,
-        isLoading: isLoading,
-      ),
+      isLoading: isLoading,
     );
   }
 }

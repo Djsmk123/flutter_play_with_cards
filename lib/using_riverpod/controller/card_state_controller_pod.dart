@@ -9,7 +9,7 @@ class CardsController extends StateNotifier<CardStates> {
   CardsController()
       : super(CardStates(
           cardList: CardList.fromJson({
-            "cards": cards,
+            "cards": cardsList(),
           }),
           cardStates: const CardStatesModel(false, null),
           isLoading: false,

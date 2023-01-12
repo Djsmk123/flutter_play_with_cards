@@ -14,11 +14,13 @@ class CustomCardGetx extends StatelessWidget {
               controller.cardStates.value.index == index
           ? controller.cardStates.value.isLoading
           : false;
-      return InkWell(
-        onTap: () async {
+      return CardContainer(
+        card: card,
+        index: index,
+        isLoading: isLoading,
+        onTap: () {
           controller.toggleLike(index);
         },
-        child: CardContainer(card: card, index: index, isLoading: isLoading),
       );
     }));
   }

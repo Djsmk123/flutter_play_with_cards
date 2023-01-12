@@ -15,16 +15,14 @@ class CustomCardWidgetBloc extends StatelessWidget {
       final bool isLoading = state.cardStatesModel.index != null &&
           state.cardStatesModel.index == index &&
           state.cardStatesModel.isLoading;
-      return InkWell(
-        onTap: () {
+      return CardContainer(
+        card: card,
+        onTap: () async {
           BlocProvider.of<CardStateProviderBloc>(context)
               .add(CardStateBlocEventToggleLike(index));
         },
-        child: CardContainer(
-          card: card,
-          index: index,
-          isLoading: isLoading,
-        ),
+        index: index,
+        isLoading: isLoading,
       );
     });
   }

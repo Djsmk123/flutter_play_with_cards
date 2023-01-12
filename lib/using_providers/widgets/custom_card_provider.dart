@@ -18,15 +18,13 @@ class CustomCardProvider extends StatelessWidget {
     final bool isLoading = cardsProvider.cardStates.index == index
         ? cardsProvider.cardStates.isLoading
         : false;
-    return InkWell(
+    return CardContainer(
+      card: card,
+      index: index,
       onTap: () {
         context.read<CardsStateProvider>().likeUpdates(index);
       },
-      child: CardContainer(
-        card: card,
-        index: index,
-        isLoading: isLoading,
-      ),
+      isLoading: isLoading,
     );
   }
 }

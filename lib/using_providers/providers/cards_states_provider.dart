@@ -5,7 +5,7 @@ import 'package:sample_applications/models/cards_list.dart';
 
 class CardsStateProvider extends ChangeNotifier {
   CardList cardList = CardList.fromJson({
-    "cards": cards,
+    "cards": cardsList(),
   });
 
   bool isLoading = false;

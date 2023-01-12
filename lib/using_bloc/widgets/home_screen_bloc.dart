@@ -15,10 +15,9 @@ class BlocHomeScreen extends StatelessWidget {
       builder: ((context, state) {
         return CommonHomeScreen(
             cardsList: state.cardsList,
-            addCard: () {
-              BlocProvider.of<CardStateProviderBloc>(context).add(
-                  CardStateBlocEventAddNewCard(
-                      createCard(state.cardsList.cards.length)));
+            addCard: (title, desc) {
+              BlocProvider.of<CardStateProviderBloc>(context)
+                  .add(CardStateBlocEventAddNewCard(createCard(title, desc)));
             },
             removeCard: (index) {
               BlocProvider.of<CardStateProviderBloc>(context)

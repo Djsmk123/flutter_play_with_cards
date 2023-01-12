@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sample_applications/constant.dart';
 import 'package:sample_applications/models/cards_list.dart';
+import 'package:sample_applications/widgets/bottom_model_sheet.dart';
 
 class CommonHomeScreen extends StatelessWidget {
   final CardList cardsList;
@@ -21,6 +22,7 @@ class CommonHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           elevation: 5,
@@ -38,34 +40,33 @@ class CommonHomeScreen extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            addCard();
+            showBottomModelSheet(context, addCard);
           },
           backgroundColor: kSecondaryColor,
           child: const Icon(Icons.add),
         ),
-        body: Center(
-            child: SingleChildScrollView(
-          child: !isLoading
-              ? Column(children: [
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: ((context, index) {
-                      return Dismissible(
-                          onDismissed: (direction) {
-                            removeCard(index);
-                          },
-                          key: UniqueKey(),
-                          child: child(index));
-                    }),
-                    itemCount: cardsList.cards.length,
-                  )
-                ])
-              : const Center(
-                  child: CircularProgressIndicator(
-                    color: kSecondaryColor,
-                  ),
+        body: !isLoading
+            ? GridView.builder(
+                cacheExtent: cardsList.cards.length.toDouble() * 100,
+                itemBuilder: ((context, index) {
+                  return Dismissible(
+                      onDismissed: (direction) {
+                        removeCard(index);
+                      },
+                      key: UniqueKey(),
+                      child: child(index));
+                }),
+                itemCount: cardsList.cards.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount:
+                      size.width > 600 ? (size.width > 800 ? 3 : 2) : 1,
+                  childAspectRatio: size.width > 600 ? 2 : 3,
                 ),
-        )));
+              )
+            : const Center(
+                child: CircularProgressIndicator(
+                  color: kSecondaryColor,
+                ),
+              ));
   }
 }

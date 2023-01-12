@@ -13,7 +13,7 @@ part 'card_state_bloc_state.dart';
 class CardStateProviderBloc
     extends Bloc<CardStateBlocEvents, CardStateBlocState> {
   CardStateProviderBloc()
-      : super(CardStateBloc(CardList.fromJson({"cards": cards}),
+      : super(CardStateBloc(CardList.fromJson({"cards": cardsList()}),
             const CardStatesModel(false, null), false)) {
     on<CardStateBlocEvents>((event, emit) async {
       if (event is CardStateBlocEventAddNewCard) {
