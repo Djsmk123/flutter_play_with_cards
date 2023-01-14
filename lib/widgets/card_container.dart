@@ -125,7 +125,7 @@ class CardContainer extends StatelessWidget {
             ],
           ),
           IconButton(
-            onPressed: () async {
+            onPressed: () {
               showBottomModelSheet(context, onUpdate,
                   title: card.name, subtitle: card.description);
             },
@@ -166,13 +166,4 @@ class CardContainer extends StatelessWidget {
       ),
     ]);
   }
-}
-
-void showCustomSnackBar(BuildContext context, String message,
-    {bool isFailure = false}) {
-  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    content: Text(message),
-    backgroundColor: isFailure ? Colors.red : Colors.green,
-    duration: const Duration(seconds: 2),
-  ));
 }
