@@ -20,6 +20,11 @@ class CustomCardRiverPod extends ConsumerWidget {
       onTap: () {
         ref.read(cardListProvider.notifier).toggleLike(index);
       },
+      onUpdate: (title, description) {
+        ref
+            .read(cardListProvider.notifier)
+            .updateCard(index, title, description);
+      },
       isLoading: isLoading,
     );
   }

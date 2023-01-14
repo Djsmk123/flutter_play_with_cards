@@ -4,6 +4,7 @@ import 'package:sample_applications/models/cards_list.dart';
 import 'package:sample_applications/using_riverpod/states/card_states_riverpod.dart';
 
 import '../../constant.dart';
+import '../../models/card_state_model.dart';
 
 class CardsController extends StateNotifier<CardStates> {
   CardsController()
@@ -72,15 +73,28 @@ class CardsController extends StateNotifier<CardStates> {
   }
 
   //remove card
-  Future removeCard(int index) async {
-    setHomeScreenLoading = true;
-    await Future.delayed(const Duration(seconds: 1));
+  void removeCard(int index) {
     state = state.copyWith(
       cardList: state.cardList.copyWith([
         ...state.cardList.cards.sublist(0, index),
         ...state.cardList.cards.sublist(index + 1),
       ]),
     );
-    setHomeScreenLoading = false;
+  }
+
+  Future updateCard(int index, title, desc) async {
+    setCardLoading(true, index);
+    await Future.delayed(const Duration(seconds: 1));
+    state = state.copyWith(
+      cardList: state.cardList.copyWith([
+        ...state.cardList.cards.sublist(0, index),
+        state.cardList.cards[index].copyWith(
+          name: title,
+          description: desc,
+        ),
+        ...state.cardList.cards.sublist(index + 1),
+      ]),
+    );
+    setCardLoading(false, null);
   }
 }

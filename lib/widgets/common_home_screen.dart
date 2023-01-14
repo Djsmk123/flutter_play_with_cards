@@ -47,7 +47,7 @@ class CommonHomeScreen extends StatelessWidget {
         ),
         body: !isLoading
             ? GridView.builder(
-                cacheExtent: cardsList.cards.length.toDouble() * 100,
+                cacheExtent: cardsList.cards.length.toDouble(),
                 itemBuilder: ((context, index) {
                   return Dismissible(
                       onDismissed: (direction) {
@@ -57,11 +57,14 @@ class CommonHomeScreen extends StatelessWidget {
                       child: child(index));
                 }),
                 itemCount: cardsList.cards.length,
+                shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount:
-                      size.width > 600 ? (size.width > 800 ? 3 : 2) : 1,
-                  childAspectRatio: size.width > 600 ? 2 : 3,
-                ),
+                    crossAxisCount:
+                        size.width > 600 ? (size.width > 800 ? 3 : 2) : 1,
+                    mainAxisExtent: 170,
+                    mainAxisSpacing: 20,
+                    childAspectRatio:
+                        size.width > 600 ? (size.width > 800 ? 2 : 2.5) : 3),
               )
             : const Center(
                 child: CircularProgressIndicator(

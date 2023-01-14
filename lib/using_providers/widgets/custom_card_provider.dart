@@ -24,6 +24,11 @@ class CustomCardProvider extends StatelessWidget {
       onTap: () {
         context.read<CardsStateProvider>().likeUpdates(index);
       },
+      onUpdate: (title, description) {
+        context
+            .read<CardsStateProvider>()
+            .updateCard(index, title, description);
+      },
       isLoading: isLoading,
     );
   }

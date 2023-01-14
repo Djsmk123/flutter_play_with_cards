@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sample_applications/constant.dart';
 import 'package:sample_applications/models/card_model.dart';
+import 'package:sample_applications/models/card_state_model.dart';
 import 'package:sample_applications/models/cards_list.dart';
 
 class CardsStateProvider extends ChangeNotifier {
@@ -67,12 +68,26 @@ class CardsStateProvider extends ChangeNotifier {
   }
 
   //remove card
-  Future removeCard(CardModel card) async {
-    setHomeScreenLoading = true;
-    await Future.delayed(const Duration(seconds: 1));
+  void removeCard(CardModel card) {
     cardList = cardList.copyWith([
       ...cardList.cards.where((element) => element != card),
     ]);
-    setHomeScreenLoading = false;
+    notifyListeners();
+  }
+
+  //update card
+  Future updateCard(index, title, desc) async {
+    setCardLoading(true, index);
+
+    await Future.delayed(const Duration(seconds: 1));
+    cardList = cardList.copyWith([
+      ...cardList.cards.sublist(0, index),
+      cardList.cards[index].copyWith(
+        name: title,
+        description: desc,
+      ),
+      ...cardList.cards.sublist(index + 1),
+    ]);
+    setCardLoading(false, null);
   }
 }

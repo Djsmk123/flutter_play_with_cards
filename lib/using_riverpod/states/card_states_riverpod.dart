@@ -1,4 +1,4 @@
-import 'package:sample_applications/constant.dart';
+import 'package:sample_applications/models/card_state_model.dart';
 import 'package:sample_applications/models/cards_list.dart';
 
 class CardStates {

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:sample_applications/constant.dart';
 import 'package:sample_applications/models/card_model.dart';
+import 'package:sample_applications/models/card_state_model.dart';
 import 'package:sample_applications/models/cards_list.dart';
 
 class CardControllerGetx extends GetxController {
@@ -26,11 +27,10 @@ class CardControllerGetx extends GetxController {
   }
   //remove card
 
-  Future removeCard(int index) async {
-    setHomeScreenLoading = true;
-    await Future.delayed(const Duration(seconds: 2));
-    list.value.cards.removeAt(index);
-    setHomeScreenLoading = false;
+  void removeCard(int index) {
+    list.update((val) {
+      val!.cards.removeAt(index);
+    });
   }
 
   //toggle like
@@ -52,6 +52,20 @@ class CardControllerGetx extends GetxController {
         );
       });
     }
+    updateCardStates(false, null);
+  }
+
+  // update card
+
+  Future updateCard(int index, title, desc) async {
+    updateCardStates(true, index);
+    await Future.delayed(const Duration(seconds: 2));
+    list.update((val) {
+      val!.cards[index] = val.cards[index].copyWith(
+        name: title,
+        description: desc,
+      );
+    });
     updateCardStates(false, null);
   }
 }

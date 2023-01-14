@@ -17,6 +17,9 @@ class CustomCardGetx extends StatelessWidget {
       return CardContainer(
         card: card,
         index: index,
+        onUpdate: (title, description) {
+          controller.updateCard(index, title, description);
+        },
         isLoading: isLoading,
         onTap: () {
           controller.toggleLike(index);

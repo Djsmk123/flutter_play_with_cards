@@ -8,7 +8,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Card Tutorial",
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true),
+      theme:
+          ThemeData(useMaterial3: true, scaffoldBackgroundColor: Colors.white),
       home: home,
     );
   }

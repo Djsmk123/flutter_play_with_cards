@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:sample_applications/constant.dart';
 import 'package:sample_applications/models/card_model.dart';
+import 'package:sample_applications/models/card_state_model.dart';
 import 'package:sample_applications/models/cards_list.dart';
 
 part 'card_state_bloc_event.dart';
@@ -27,8 +28,6 @@ class CardStateProviderBloc
         );
         emit(state.copyWith(cardsList: cards, isLoading: false));
       } else if (event is CardStateBlocEventDeleteCard) {
-        emit(state.copyWith(isLoading: true));
-        await Future.delayed(const Duration(seconds: 2));
         var cards = state.cardsList.cards;
         cards.removeAt(event.index);
         emit(state.copyWith(
@@ -54,6 +53,18 @@ class CardStateProviderBloc
         emit(state.copyWith(
           cardsList: state.cardsList.copyWith(cards),
           isLoading: false,
+        ));
+      } else if (event is CardStateBlocEventUpdateCard) {
+        emit(state.copyWith(
+            cardStatesModel: CardStatesModel(true, event.index)));
+        await Future.delayed(const Duration(seconds: 2));
+        var card = state.cardsList.cards[event.index];
+        card = card.copyWith(name: event.title, description: event.description);
+        var cards = state.cardsList.cards;
+        cards[event.index] = card;
+        emit(state.copyWith(
+          cardsList: state.cardsList.copyWith(cards),
+          cardStatesModel: const CardStatesModel(false, null),
         ));
       }
     });

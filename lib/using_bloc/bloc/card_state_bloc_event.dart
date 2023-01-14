@@ -20,3 +20,10 @@ class CardStateBlocEventDeleteCard extends CardStateBlocEvents {
 
   CardStateBlocEventDeleteCard(this.index);
 }
+
+class CardStateBlocEventUpdateCard extends CardStateBlocEvents {
+  final int index;
+  final String title;
+  final String description;
+  CardStateBlocEventUpdateCard(this.index, this.title, this.description);
+}
